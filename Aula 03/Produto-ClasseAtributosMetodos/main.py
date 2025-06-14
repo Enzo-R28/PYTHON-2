@@ -1,0 +1,11 @@
+from classe import Produto
+notebook = Produto('Notebook Dell i7' , 5800.90)
+iphone16 = Produto('Apple IPhone 16' , 9850.00)
+input('Pressione qualquer tecla para ver as oferta: ')
+notebook.verProduto()
+iphone16.verProduto()
+varProd =input('Informe o produto: ')
+varPreco = float(input('Informe o preço: '))
+produtoDoUsuario = Produto(varProd, varPreco)
+produtoDoUsuario.verProduto()
+print()

@@ -2,13 +2,18 @@ from django.contrib import admin
 from .models import Prato
 
 class ListandoPratos(admin.ModelAdmin):
-    list_display = ('id', 'nome_prato', 'categoria', 'tempo_preparo')
+    list_display = ('id', 'nome_prato', 'categoria', 'tempo_preparo', 'publicado')
     list_display_links = ('id', 'nome_prato')
-    search_fields = ('nome_prato', 'categoria')
+    search_fields = ('nome_prato',)
     list_filter = ('categoria',)
+    list_editable = ('publicado',)
     list_per_page = 10
-    ordering = ('id',)
+    actions = ['marcar_como_publicado']
 
-#Register your models here.
+    def marcar_como_publicado(self, request, queryset):
+        atualizados = queryset.update(publicado=True)
+        self.message_user(request, f"{atualizados} pratos foram marcados como publicados.")
+    marcar_como_publicado.short_description = "Publicar Todos"
 
-admin.site.register(Prato, ListandoPratos)
+# Register your models here.
+admin.site.register(Prato, ListandoPratos,)

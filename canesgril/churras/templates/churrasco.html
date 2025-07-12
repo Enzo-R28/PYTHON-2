@@ -32,7 +32,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="receipe-slider owl-carousel">
-                        <img src={% static "img/bg-img/tomate_banner.jpg" %}>
+                        {% if prato.foto_prato == '' %}
+                                <img src=https://storage.googleapis.com/imagens_videos_gou_cooking_prod/production/cooking/cropped_temp_1026762051fbe088e67be2.53912757_.jpg alt="">
+                            {% else %}
+                                <img src="{{ prato.foto_prato.url }}" alt="">
+                            {% endif %}
                     </div>
                 </div>
             </div>
@@ -45,12 +49,12 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <span>{{ prato.data_prato }}</span>
+                            <span>{{ prato.date_prato }}</span>
                             <h2>{{ prato.nome_prato }}</h2>
                             <div class="receipe-duration">
-                                <h6>Preparo:{{ prato.tempo_preparo }} minutos </h6>
-                                <h6>Rendimento:{{ prato.rendimento }}</h6>
-                                <h6>Categoria:{{ prato.categoria }}</h6>
+                                <h6>Preparo: {{ prato.tempo_preparo }} minutos</h6>
+                                <h6>Rendimento: {{ prato.rendimento }} porçoes</h6>
+                                <h6>Categoria: {{ prato.categoria }}</h6>
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <!-- Single Preparation Step -->
-                        <h4>Modo de Preparo</h4>
+                        <h4>Preparação</h4>
                         <div class="single-preparation-step d-flex">
                             <p>{{ prato.modo_preparo }}</p>
                         </div>
@@ -69,7 +73,7 @@
                         <div class="ingredients">
                             <h4>Ingredientes</h4>
                             <div class="ingredients">
-                                <p>{{ prato.ingredientes }} </p>
+                                <p>{{ prato.ingredientes }}</p>
                             </p>
                             </div>
                         </div>
